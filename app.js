@@ -1,26 +1,18 @@
-var express = require('express');
-var app = express();
-//vincular express com EJS
-app.set('view engine', 'ejs');
+var app = require('./config/server');
 
+//Chama os modulos que encapsulam as rotas
+//var rotaNoticias = require('./app/routes/noticias');
+//var rotaHome = require('./app/routes/home');
+//var rotaInclusaoNoticia = require('./app/routes/formulario_inclusao_noticia');
 
-app.get('/', function(req, res) {
-    //o render irá buscar o arquivo ejs, podendo separar os htmls
-    res.render('home/index');
-});
+//é possível fazer o require ja executando a função
+require('./app/routes/noticias')(app);
+require('./app/routes/home')(app);
+require('./app/routes/formulario_inclusao_noticia')(app);
 
-//organizando as rotas
-app.get('/formulario_inclusao_noticia', function(req, res) {
-    //envia código html direto para a página
-    //res.send("<html><body><title>Portal de notícias</title></body></html>");
-    res.render("admin/form_add_noticia")
-});
-
-app.get('/noticias', function(req, res) {
-    //o render irá buscar o arquivo ejs, podendo separar os htmls
-    res.render('noticias/noticias');
-});
-
+//rotaNoticias(app);
+//rotaHome(app);
+//rotaInclusaoNoticia(app);
 
 
 app.listen(3000, function() {
