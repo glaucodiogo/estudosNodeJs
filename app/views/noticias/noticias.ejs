@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Not�cias</title>
-		</head>
-	<body>
+<html lang="pt-br">
 
-		<h1>Not�cias</h1>
+<head>
+    <meta charset="utf-8" />
+    <title>Notícias</title>
+</head>
 
-	</body>
+<body>
+
+    <h1>Notícias</h1>
+
+    <table>
+        <th>
+            <td>Título</td>
+            <td>Notícia</td>
+        </th>
+        <tbody>
+            <% for(var i=0; i < noticias.length;i++){ %>
+                <tr>
+                    <td>
+                        <%= noticias[i].id  %>
+                    </td>
+                    <td>
+                        <%= noticias[i].titulo  %>
+                    </td>
+                    <td>
+                        <%= noticias[i].noticia  %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+</body>
+
 </html>
