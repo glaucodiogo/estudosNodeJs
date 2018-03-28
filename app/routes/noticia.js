@@ -1,8 +1,10 @@
 module.exports = function(app) {
     app.get('/noticia', function(req, res) {
         var conexao = app.config.db();
+        var noticiasModel = app.app.models.noticiasModel;
 
-        conexao.query('select * from noticias where id = 1', function(error, result) {
+        noticiasModel.getNoticia(conexao, function(error, result) {
+            console.dir(result);
             res.render("noticias/noticia", { noticia: result });
         });
     });

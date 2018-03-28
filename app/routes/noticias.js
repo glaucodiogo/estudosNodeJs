@@ -1,13 +1,12 @@
-var dbConnection = require('../../config/db');
-module.exports = function(app) {
-    app.get('/noticias', function(req, res) {
+module.exports = function(application) {
+    application.get('/noticias', function(req, res) {
         //Executa a conexao apartir do require
-        var conexao = dbConnection();
-        //Executando consultas, a função de callback retorna o resultado
-        //sem travar  a aplicação
-        conexao.query("select * from noticias", function(error, result) {
-            //envia o resultado para a m
+        var conexao = application.config.db();
+        var noticiasModel = application.app.models.noticiasModel;
+
+        noticiasModel.getNoticias(conexao, function(error, result) {
             res.render("noticias/noticias", { noticias: result });
         });
+
     });
 }
