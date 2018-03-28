@@ -6,9 +6,11 @@ var app = require('./config/server');
 //var rotaInclusaoNoticia = require('./app/routes/formulario_inclusao_noticia');
 
 //é possível fazer o require ja executando a função
-require('./app/routes/noticias')(app);
-require('./app/routes/home')(app);
-require('./app/routes/formulario_inclusao_noticia')(app);
+
+//Desconsiderados pelo fato de usar o consign
+//require('./app/routes/noticias')(app);
+//require('./app/routes/home')(app);
+//require('./app/routes/formulario_inclusao_noticia')(app);
 
 //rotaNoticias(app);
 //rotaHome(app);

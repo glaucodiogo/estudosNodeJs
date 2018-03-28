@@ -9,8 +9,5 @@ module.exports = function(app) {
             //envia o resultado para a m
             res.render("noticias/noticias", { noticias: result });
         });
-
-
-
     });
 }
