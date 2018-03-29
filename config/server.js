@@ -2,7 +2,6 @@
 var express = require('express');
 //Este modulo serve para controlar as rotas
 var consign = require('consign');
-
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
@@ -20,6 +19,7 @@ consign()
     .include('app/routes')
     .then('config/db.js')
     .then('app/models')
+    .then('app/controller')
     .into(app);
 
 module.exports = app;

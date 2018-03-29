@@ -1,8 +1,7 @@
 module.exports = function(application) {
     //organizando as rotas
     application.get('/formulario_inclusao_noticia', function(req, res) {
-        //envia código html direto para a página        
-        res.render("admin/form_add_noticia", { validacao: {} });
+        application.app.controllers.admin /
     });
 
     application.post('/noticias/salvar', function(req, res) {
