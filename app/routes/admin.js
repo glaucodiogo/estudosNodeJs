@@ -2,25 +2,34 @@ module.exports = function(application) {
     //organizando as rotas
     application.get('/formulario_inclusao_noticia', function(req, res) {
         //envia código html direto para a página        
-        res.render("admin/form_add_noticia")
+        res.render("admin/form_add_noticia", { validacao: {} });
     });
 
     application.post('/noticias/salvar', function(req, res) {
-        //envia código html direto para a página
-        //res.send("<html><body><title>Portal de notícias</title></body></html>");
-
         var noticia = req.body;
 
-        //conexao
-        var conexao = application.config.db();
+        req.asset('titulo', 'Título é obrigatório').notEmpty();
+        req.asset('resumo', 'Resumo é obrigatório').notEmpty();
+        req.asset('resumo', 'Resumo deve conter entre 10 a 100 caracteres').len(10, 100);
+        req.asset('autor', 'Autor é obrigatório').notEmpty();
+        req.asset('data_noticia', 'Data é obrigatório').notEmpty().isDate({ format: 'YYYY-MM-DD' });
+        req.asset('noticia', 'Notícia é obrigatório').notEmpty();
 
+        var erros = req.validationErrors();
+
+        if (erros) {
+            res.render("admin/form_add_noticia", { validacao: erros, noticia: noticia });
+            return;
+        }
+
+        //conexao
+        var connection = application.config.db();
         //model
-        var noticiasModel = application.app.models.noticiasModel;
+        var noticiasModel = new application.app.models.noticiasModel(connection);
 
         //enviar para uma função salvarNoticia
-        noticiasModel.salvarNoticia(noticia, conexao, function(error, result) {
-            res.render("noticias/noticias", { noticia: result });
+        noticiasModel.addNoticia(noticia, function(error, result) {
+            res.redirect('/noticias');
         });
-
     });
 }
