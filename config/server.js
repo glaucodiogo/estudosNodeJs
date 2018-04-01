@@ -10,6 +10,11 @@ var app = express();
 app.set('view engine', 'ejs');
 //Indica para o express que as views devem ser buscadas em outra página
 app.set('views', './app/views');
+
+//Para registrar o endereço dos itens publicos,
+//basta usarmos express.static, que a url das imagens estará regerada,autmaticamente
+app.use(express.static('./app/public'));
+
 //O body parser cuida das requisições 
 //Passando extended true , permite uma abrangencia maior das urls
 app.use(bodyParser.urlencoded({ extended: true }));

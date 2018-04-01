@@ -1,7 +1,10 @@
-module.exports.index = function(application, req, res) {   
-   res.render("home/index");
-}
+module.exports.index = function(application, req, res) {
+    //conexao
+    var connection = application.config.db();
+    //model
+    var noticiasModel = new application.app.models.noticiasModel(connection);
 
-module.exports.noticia = function(application, req, res) {  
-     
-}
+    noticiasModel.getUltimasNoticias(function(error,result){        
+        res.render("home/index",{noticias:result});
+    });
+};
