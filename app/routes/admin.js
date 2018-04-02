@@ -4,18 +4,35 @@ module.exports = function(application) {
         res.render("admin/index");
     });
     application.post('/admin/login', function(req, res) {
-        res.redirect("admin/dashboard/");
+        res.redirect("/admin/dashboard/");
     });
 
-    application.get('/admin/dashboard',function(req,res){
-        res.render("admin/dashboard");
+    application.get('/admin/dashboard', function(req, res) {
+        application.app.controllers.admin.dashboard(application, req, res);
     });
 
-    application.get('/formulario_inclusao_noticia', function(req, res) {
-        application.app.controllers.admin.formulario_inclusao_noticia(application,req,res);
+    //Amostras    
+    application.get('/admin/amostras', function(req, res) {
+        application.app.controllers.admin.amostras(application, req, res);
+    });
+    application.get('/admin/amostra/create', function(req, res) {
+        application.app.controllers.admin.createAmostra(application, req, res);
+    });
+    application.post('/admin/amostra/save', function(req, res) {
+        application.app.controllers.admin.saveAmostra(application, req, res);
     });
 
-    application.post('/noticias/salvar', function(req, res) {        
-        application.app.controllers.admin.noticias_salvar(application,req,res);
+
+    application.get('/admin/perguntas', function(req, res) {
+        application.app.controllers.admin.perguntas(application, req, res);
     });
+
+
+    //Relatórios        
+    application.get('/admin/relatorios/export', function(req, res) {
+        application.app.controllers.admin.exportCSV(application, req, res);
+
+    });
+
+
 }
