@@ -48,7 +48,7 @@ module.exports.saveAmostra = function(application, req, res) {
 
     if (erros) {
         console.log(erros);
-        res.render("admin/amostra/create", { validacao: erros, amostra: amostra });
+        res.render("admin/amostras/create", { validacao: erros, amostra: amostra });
         return;
     } else {
         var connection = application.config.db();

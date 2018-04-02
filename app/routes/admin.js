@@ -6,7 +6,6 @@ module.exports = function(application) {
     application.post('/admin/login', function(req, res) {
         res.redirect("/admin/dashboard/");
     });
-
     application.get('/admin/dashboard', function(req, res) {
         application.app.controllers.admin.dashboard(application, req, res);
     });
@@ -22,6 +21,9 @@ module.exports = function(application) {
         application.app.controllers.admin.saveAmostra(application, req, res);
     });
 
+    application.put('/admin/amostra/edit', function(req, res) {
+        application.app.controllers.admin.saveAmostra(application, req, res);
+    });
 
     application.get('/admin/perguntas', function(req, res) {
         application.app.controllers.admin.perguntas(application, req, res);

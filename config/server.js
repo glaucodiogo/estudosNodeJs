@@ -1,5 +1,6 @@
 //Quando for trabalhar com recursos específicos , é ideal que seja adicionado aqui
 var express = require('express');
+
 //Este modulo serve para controlar as rotas
 var consign = require('consign');
 var bodyParser = require('body-parser');
@@ -16,7 +17,7 @@ app.set('views', './app/views');
 //basta usarmos express.static, que a url das imagens estará regerada,autmaticamente
 app.use(express.static('./app/public'));
 
-    //O body parser cuida das requisições 
+//O body parser cuida das requisições 
 //Passando extended true , permite uma abrangencia maior das urls
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
