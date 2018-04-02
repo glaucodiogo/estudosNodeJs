@@ -13,7 +13,10 @@ module.exports.noticia = function(application, req, res) {
     var noticiasModel = new application.app.models.noticiasModel(connection);
 
     var id_noticia = req.query;
+   
     noticiasModel.getNoticia(id_noticia,function(error, result) {
         res.render("noticias/noticia", { noticia: result });
     });
+   
+    
 }

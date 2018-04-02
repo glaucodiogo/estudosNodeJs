@@ -1,3 +1,4 @@
+
 module.exports.formulario_inclusao_noticia = function(application, req, res) {
     res.render("admin/form_add_noticia", { validacao: {} });
 }
@@ -5,12 +6,12 @@ module.exports.formulario_inclusao_noticia = function(application, req, res) {
 module.exports.noticias_salvar = function(application, req, res) {
     var noticia = req.body;
 
-    req.asset('titulo', 'Título é obrigatório').notEmpty();
-    req.asset('resumo', 'Resumo é obrigatório').notEmpty();
-    req.asset('resumo', 'Resumo deve conter entre 10 a 100 caracteres').len(10, 100);
-    req.asset('autor', 'Autor é obrigatório').notEmpty();
-    req.asset('data_noticia', 'Data é obrigatório').notEmpty().isDate({ format: 'YYYY-MM-DD' });
-    req.asset('noticia', 'Notícia é obrigatório').notEmpty();
+    req.assert('titulo', 'Título é obrigatório').notEmpty();
+    req.assert('resumo', 'Resumo é obrigatório').notEmpty();
+    req.assert('resumo', 'Resumo deve conter entre 10 a 100 caracteres').len(10, 100);
+    req.assert('autor', 'Autor é obrigatório').notEmpty();
+    req.assert('data_noticia', 'Data é obrigatório').notEmpty().isDate({ format: 'YYYY-MM-DD' });
+    req.assert('noticia', 'Notícia é obrigatório').notEmpty();
 
     var erros = req.validationErrors();
 

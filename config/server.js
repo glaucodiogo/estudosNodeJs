@@ -5,6 +5,7 @@ var consign = require('consign');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
+
 var app = express();
 //vincular express com EJS
 app.set('view engine', 'ejs');
@@ -15,10 +16,11 @@ app.set('views', './app/views');
 //basta usarmos express.static, que a url das imagens estará regerada,autmaticamente
 app.use(express.static('./app/public'));
 
-//O body parser cuida das requisições 
+    //O body parser cuida das requisições 
 //Passando extended true , permite uma abrangencia maior das urls
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
+
 
 consign()
     .include('app/routes')
